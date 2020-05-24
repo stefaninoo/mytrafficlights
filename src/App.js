@@ -1,26 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
+import React from "react";
+
+import { FaMoon, FaSun } from 'react-icons/fa';
+
+import TrafficLight from './components/trafficlight/TrafficLight';
+import ModeSwitch from './components/modeswitch/ModeSwitch';
+import * as CONSTANTS from './utils/constants'
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+        nightMode : false
+    }
+
+  }
+
+  handleModeChange = (nightMode) => {
+    this.setState({nightMode})
+  }
+
+  render () {
+    const { nightMode } = this.state;
+    return (
+      <div className="App">
+        <div className="daynight-icon">{ nightMode ?  <FaMoon size="3rem"/> : <FaSun size="3rem"/> }</div>
+        <div className={ "trafficlights-container " + ( nightMode ? "night" : "" ) }>
+            <TrafficLight
+                className="main"
+                start={ CONSTANTS.TRAFFIC_LIGHT.CONFIG.GO }
+                nightMode={ nightMode }>
+            </TrafficLight>
+            <TrafficLight
+                className="subordinate"
+                start={ CONSTANTS.TRAFFIC_LIGHT.CONFIG.STOP }
+                nightMode= {nightMode }>
+            </TrafficLight>
+        </div>
+        <ModeSwitch
+            handleModeChange = { this.handleModeChange }>
+        </ModeSwitch>
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App

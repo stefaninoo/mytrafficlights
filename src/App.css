@@ -1,10 +1,32 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.daynight-icon {
+  position: absolute;
+  width: 100%;
+  text-align: right;
+  top: 5%;
+  right: 5%;
+  color: yellow;
+}
+
+.trafficlights-container {
+  display: flex;
+  justify-content: space-around;
+  background-color: lightskyblue;
+  transition: background-color 0.6s ease-in-out;
+}
+
+.trafficlights-container.night {
+  background-color: darkblue;
 }
 
 @media (prefers-reduced-motion: no-preference) {

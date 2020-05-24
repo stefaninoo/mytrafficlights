@@ -1,0 +1,13 @@
+.traffic-light {
+    padding: 2%;
+    width: 80px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subordinate {
+    transform: scale(0.6);
+    width: 40px;
+}
